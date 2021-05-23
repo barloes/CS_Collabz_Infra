@@ -20,6 +20,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
     viewer_protocol_policy = "redirect-to-https"
 
+    function_association  {
+      event_type   = "viewer-request"
+      function_arn    = aws_cloudfront_function.test.arn
+    }
+
     forwarded_values {
       query_string = false
 

@@ -7,9 +7,11 @@ provider "aws" {
   region  = "ap-southeast-1"
 }
 
-module "cloudfronts3" {
+module "cloudfront" {
   source = "./resources/cloudfronts3"
 
   bucket_name = "cscollabzstaticwebsite"
+  aws_region = "ap-southeast-1"
+
 }
 
