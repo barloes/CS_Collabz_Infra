@@ -2,7 +2,7 @@
 * contain list of terrafirn modules I have created 
 
 # How to use the modules
-* On the main.tf in the root directory 
+1. Configure the main.tf in the root directory 
 
 ```  
 provider "aws" {
@@ -13,7 +13,7 @@ provider "aws" {
 - Configure the profile - aws profile on ~/.aws/credentials 
 - Configure the region `eg.ap-southeast-1` 
 
-* Add modules
+2. Add modules in `main.tf`
 
 ```
 module "anynameyouwant" {
@@ -25,7 +25,7 @@ module "anynameyouwant" {
 - Add the module and configure the source to point to the folder of the module you wish to create 
 - `eg.source = "./modules/fargate"`
 
-* Run the Terraform Commands
+3. Run the Terraform Commands on root directory
 ```
 terraform init
 terraform plan
