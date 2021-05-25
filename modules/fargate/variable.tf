@@ -23,11 +23,11 @@ variable "container_count" {
 }
 variable "container_cpu" {
   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
-  default = "1024"
+  default = "512"
 }
 variable "container_memory" {
   description = "Fargate instance memory to provision (in MiB)"
-  default = "2048"
+  default = "512"
 }
 
 variable "aws_region" {
@@ -35,11 +35,11 @@ variable "aws_region" {
 }
 
 variable "az_a" {
-  default = "ap-southeast-1"
+  default = "ap-southeast-1a"
 }
 
 variable "az_b" {
-  default = "ap-southeast-1"
+  default = "ap-southeast-1b"
 }
 
 

@@ -7,20 +7,16 @@ provider "aws" {
   region  = "ap-southeast-1"
 }
 
-/*
-module "cloudfront" {
-  source = "./modules/cloudfronts3"
+module "ecs_ecr" {
+  source = "./modules/ecr"
 
-  bucket_name = "cscollabzstaticwebsite"
-  aws_region = "ap-southeast-1"
-
+  app_name = "junecr"
 }
-*/
 
-module "ecs_fargate" {
+module "fargate" {
   source = "./modules/fargate"
 
-  app_name = "junecstest"
+  app_name = "junecs"
 }
 
 
