@@ -22,13 +22,14 @@ module "anynameyouwant" {
   app_name = "anynameyouwant"
 }
 ```
-- Add the module and configure the source to point to the folder of the module you wish to create `eg.source = "./modules/fargate"`
+- Add the module and configure the source to point to the folder of the module you wish to create 
+- `eg.source = "./modules/fargate"`
 
 * Run the Terraform Commands
 ```
-- terraform init
-- terraform plan
-- terraform apply
+terraform init
+terraform plan
+terraform apply
 ```
 
 # Created Modules
