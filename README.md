@@ -1,5 +1,5 @@
 # Terraform Infrastructure
-* contain list of modules I have copied and look around for personal use.
+* contain list of terrafirn modules I have created 
 
 # How to use the modules
 * On the main.tf in the root directory 
@@ -10,8 +10,8 @@ provider "aws" {
   region  = "ap-southeast-1"
 }
 ```
-1. Configure the profile - aws profile on ~/.aws/credentials 
-2. Configure the region `eg.ap-southeast-1` 
+- Configure the profile - aws profile on ~/.aws/credentials 
+- Configure the region `eg.ap-southeast-1` 
 
 * Add modules
 
@@ -22,12 +22,14 @@ module "anynameyouwant" {
   app_name = "anynameyouwant"
 }
 ```
-1. Add the module and configure the source to point to the folder of the module you wish to create `eg.source = "./modules/fargate"`
+- Add the module and configure the source to point to the folder of the module you wish to create `eg.source = "./modules/fargate"`
 
 * Run the Terraform Commands
-1. terraform init
-1. terraform plan
-1. terraform apply
+```
+- terraform init
+- terraform plan
+- terraform apply
+```
 
 # Created Modules
 1. CF - S3 with cloudfront function
