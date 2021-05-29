@@ -16,10 +16,18 @@ module "ecs_ecr" {
 
 */
 
-module "fargate" {
-  source = "./modules/fargate"
+module "ecr" {
+  source = "./modules/ecr"
 
-  app_name = "junecs"
+  app_name = "imagerepo"
 }
 
 
+
+module "ec2" {
+  source = "./modules/ec2"
+
+  instance_type = "t4g.nano"
+  ami_id = "ami-032eefd614c03b622"
+
+}
