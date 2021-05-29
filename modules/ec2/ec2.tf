@@ -12,5 +12,4 @@ resource "aws_instance" "ec2" {
   credit_specification {
     cpu_credits = "standard"
   }
-
 }
