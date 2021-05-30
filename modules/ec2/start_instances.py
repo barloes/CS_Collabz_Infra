@@ -14,6 +14,3 @@ def lambda_handler(event, context):
 
   # starting instances
   starting_instances = ec2.instances.filter(Filters=[{'Name': 'instance-id', 'Values': instance_ids}]).start()
-
-  for instance in instance_ids:
-    print("%s is starting"%(instance_ids))
