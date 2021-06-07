@@ -1,10 +1,6 @@
 resource "aws_ecs_cluster" "cluster" {
   name = "ecs-cluster-${var.app_name}"
 
-  setting {
-    name  = "containerInsights"
-    value = "enabled"
-  }
 }
 
 resource "aws_ecs_task_definition" "task_definition" {
@@ -17,19 +13,19 @@ resource "aws_ecs_task_definition" "task_definition" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 80,
-          "hostPort": 80
+          "containerPort": ${var.container_port},
+          "hostPort": ${var.container_port}
         }
       ],
-      "memory": 512,
-      "cpu": 256
+      "memory": ${var.container_memory},
+      "cpu": ${var.container_cpu}
     }
   ]
   DEFINITION
   requires_compatibilities = ["FARGATE"] # Stating that we are using ECS Fargate
   network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
-  memory                   = 512         # Specifying the memory our container requires
-  cpu                      = 256         # Specifying the CPU our container requires
+  memory                   = var.container_memory        # Specifying the memory our container requires
+  cpu                      = var.container_cpu         # Specifying the CPU our container requires
   execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
 }
 
