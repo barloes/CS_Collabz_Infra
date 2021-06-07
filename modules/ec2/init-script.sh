@@ -17,19 +17,19 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="userdata.txt"
 
-#!/bin/bash
+#!/bin/bash 
 aws_account=642151248908
-ECR_name=imagerepo
-
-image1=latest
 port1=6379
-image2=nginx
 port2=80
+ECR_name=imagerepo
+image1=latest
+image2=nginx
 
 sudo su
 systemctl start docker
 systemctl enable docker
 systemctl restart docker
+docker system prune -a
 aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com
 
 docker pull $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image1
