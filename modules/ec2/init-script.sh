@@ -21,15 +21,15 @@ Content-Disposition: attachment; filename="userdata.txt"
 aws_account=642151248908
 port1=6379
 port2=80
-ECR_name=imagerepo
-image1=latest
+ECR_name=stage
+image1=redis
 image2=nginx
 
 sudo su
 systemctl start docker
 systemctl enable docker
 systemctl restart docker
-docker system prune -a
+docker system prune -af
 aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com
 
 docker pull $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image1

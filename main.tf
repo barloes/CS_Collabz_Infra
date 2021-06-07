@@ -14,6 +14,7 @@ terraform {
 provider "aws" {
   profile = "personal"
   region  = "ap-southeast-1"
+
 }
 
 module "ecr" {
