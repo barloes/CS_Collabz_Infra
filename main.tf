@@ -29,4 +29,4 @@ module "ec2" {
   ami_id = "ami-02ccb32cd71d4c9f8"
 
 }
-*/
+
