@@ -12,19 +12,19 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = "personal"
   region  = "ap-southeast-1"
 }
 
-/*
-module "ecs_ecr" {
-  source = "./modules/ecr"
+module "ecr" {
+  source = "./modules/fargate"
 
-  app_name = "junecr"
+  app_name = "testci"
 }
 
-*/
 
+
+/*
 module "ecr" {
   source = "./modules/ecr"
 
@@ -40,3 +40,4 @@ module "ec2" {
   ami_id = "ami-032eefd614c03b622"
 
 }
+*/
