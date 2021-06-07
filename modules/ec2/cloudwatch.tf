@@ -2,7 +2,7 @@
 resource "aws_cloudwatch_event_rule" "start_instances_event_rule" {
   name = "start_instances_event_rule"
   description = "Starts stopped EC2 instances"
-  schedule_expression = "cron(0 2 ? * MON-SUN *)"
+  schedule_expression = "cron(0 4 ? * MON-SUN *)"
   depends_on = ["aws_lambda_function.ec2_start_scheduler_lambda"]
 }
 

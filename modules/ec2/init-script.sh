@@ -18,11 +18,23 @@ Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="userdata.txt"
 
 #!/bin/bash
+aws_account=642151248908
+ECR_name=imagerepo
+
+image1=latest
+port1=6379
+image2=nginx
+port2=80
+
 sudo su
 systemctl start docker
 systemctl enable docker
 systemctl restart docker
-aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 642151248908.dkr.ecr.ap-southeast-1.amazonaws.com
-docker pull 642151248908.dkr.ecr.ap-southeast-1.amazonaws.com/imagerepo:latest
-docker run -p 80:80 642151248908.dkr.ecr.ap-southeast-1.amazonaws.com/imagerepo:latest
+aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com
+
+docker pull $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image1
+docker run -d -p $port1:$port1 $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image1
+
+docker pull $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image2
+docker run -d -p $port2:$port2 $aws_account.dkr.ecr.ap-southeast-1.amazonaws.com/$ECR_name:$image2
 --//

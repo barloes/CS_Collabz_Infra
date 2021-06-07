@@ -16,27 +16,16 @@ provider "aws" {
   region  = "ap-southeast-1"
 }
 
-/*
-module "ecs_ecr" {
-  source = "./modules/ecr"
-
-  app_name = "junecr"
-}
-
-*/
-
 module "ecr" {
   source = "./modules/ecr"
 
-  app_name = "imagerepo"
+  app_name = "stage"
 }
-
-
 
 module "ec2" {
   source = "./modules/ec2"
 
   instance_type = "t4g.nano"
-  ami_id = "ami-032eefd614c03b622"
+  ami_id = "ami-02ccb32cd71d4c9f8"
 
 }

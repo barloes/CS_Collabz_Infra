@@ -15,6 +15,7 @@ resource "aws_instance" "ec2" {
 
   tags = {
     AutoStop = "true"
+    restartOnPush = "true"
   }
 }
 
