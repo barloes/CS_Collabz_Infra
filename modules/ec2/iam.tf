@@ -1,5 +1,5 @@
 resource "aws_iam_role" "test_role" {
-  name = "test_role"
+  name = "test_role1"
 
   assume_role_policy = <<EOF
 {
@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
-  name = "test_profile"
+  name = "test_profile1"
   role = "${aws_iam_role.test_role.name}"
 }
 
@@ -50,7 +50,7 @@ EOF
 ### IAM Role and Policy ###
 # Allows Lambda function to describe, stop and start EC2 instances
 resource "aws_iam_role" "ec2_start_stop_scheduler" {
-  name = "ec2_start_stop_scheduler"
+  name = "ec2_start_stop_scheduler1"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
