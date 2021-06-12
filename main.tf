@@ -17,17 +17,9 @@ provider "aws" {
 
 }
 
-module "ecr" {
-  source = "./modules/ecr"
-
-  app_name = "stage"
-}
-
-module "ec2" {
-  source = "./modules/ec2"
-
-  instance_type = "t4g.nano"
-  ami_id = "ami-02ccb32cd71d4c9f8"
+module "fargate" {
+  source = "./modules/fargate"
+  app_name = "fargate"
 
 }
 

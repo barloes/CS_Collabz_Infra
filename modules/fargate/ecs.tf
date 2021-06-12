@@ -1,14 +1,14 @@
 resource "aws_ecs_cluster" "cluster" {
-  name = "ecs-cluster-${var.app_name}"
+  name = "${var.app_name}"
 
 }
 
 resource "aws_ecs_task_definition" "task_definition" {
-  family                   = "my-first-task" # Naming our first task
+  family                   = "${var.app_name}" # Naming our first task
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "my-first-task",
+      "name": "${var.app_name}",
       "image": "${aws_ecr_repository.ecr_repo.repository_url}",
       "essential": true,
       "portMappings": [
@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "task_definition" {
 
 
 resource "aws_iam_role" "ecsTaskExecutionRole" {
-  name               = "ecsTaskExecutionRolea"
+  name               = "ecsTaskExecutionRole1"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
 }
 
@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 
 
 resource "aws_ecs_service" "service" {
-  name            = "${var.app_name}-service"                         
+  name            = "${var.app_name}"                         
   cluster         = "${aws_ecs_cluster.cluster.id}"                     
   task_definition = "${aws_ecs_task_definition.task_definition.arn}" 
   launch_type     = "FARGATE"
@@ -61,14 +61,14 @@ resource "aws_ecs_service" "service" {
   depends_on      = [aws_ecs_task_definition.task_definition]
 
   network_configuration {
-    subnets          = ["${aws_default_subnet.default_subnet_a.id}","${aws_default_subnet.default_subnet_b.id}"]
+    subnets          = ["${aws_default_subnet.default_subnet_a.id}"]
     security_groups = ["${aws_security_group.service_security_group.id}"]
     assign_public_ip = true 
   }
 }
 
 resource "aws_ecr_repository" "ecr_repo" {
-  name                 = "${var.app_name}-ecr"
+  name                 = "${var.app_name}"
   image_tag_mutability = "MUTABLE"
 
 }
