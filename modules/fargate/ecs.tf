@@ -3,6 +3,11 @@ resource "aws_ecs_cluster" "cluster" {
 
 }
 
+resource "aws_cloudwatch_log_group" "yada" {
+  name = "Yada"
+
+}
+
 resource "aws_ecs_task_definition" "task_definition" {
   family                   = "${var.app_name}" # Naming our first task
   container_definitions    = <<DEFINITION
@@ -18,7 +23,15 @@ resource "aws_ecs_task_definition" "task_definition" {
         }
       ],
       "memory": ${var.container_memory},
-      "cpu": ${var.container_cpu}
+      "cpu": ${var.container_cpu},
+      "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${aws_cloudwatch_log_group.yada.name}",
+            "awslogs-region": "ap-southeast-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
     }
   ]
   DEFINITION
